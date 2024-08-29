@@ -1,0 +1,80 @@
+
+<style>
+    /* Hero Section */
+.hero {
+    background: linear-gradient(to bottom, #afa68b 0%, #938d7d 50%, #ffdb79 100%);
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: #f4b400;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 30px); }
+}
+
+/* Hero Text */
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+/* Call to Action Button */
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(to right, #f4b400, #e6a700); /* Gradient background */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1em; /* Slightly larger font size */
+    border: 2px solid #e6a700; /* Border to enhance definition */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for CTA button */
+.cta-button:hover {
+    background: linear-gradient(to right, #e6a700, #f4b400); /* Inverted gradient on hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Section Divider */
+.section-divider {
+    width: 100%;
+    height: 4px;
+    background-color: #2e2e2e; /* Black color */
+    margin: 0; /* Remove margin to ensure it's flush with both sections */
+}
+</style>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to MB Design Studio</h2>
+        <p>Discover our latest designs, explore creative ideas, and get inspired by innovative projects.</p>
+        <a href="#designs" class="cta-button">Explore Designs</a>
+    </div>
+</section>

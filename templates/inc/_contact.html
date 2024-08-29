@@ -1,0 +1,165 @@
+
+<style>
+    
+    #contact h2 {
+    text-align: center;
+    padding-top: 7%;
+    font-size: 40px;
+}
+
+/* Read More Link */
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for Read More link */
+.read-more:hover {
+    background-color: #f4b400;
+    transform: scale(1.1);
+}
+
+/* Contact Section Styles */
+#contact {
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff); /* Soft gradient background */
+    padding: 40px 20px; /* Add padding for spacing */
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 800px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Center container */
+    padding: 20px;
+    background-color: #fff; /* White background for form area */
+    border-radius: 12px; /* More rounded corners for a modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+    transform: translateY(10px); /* Slight initial offset for animation effect */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.contact-container:hover {
+    transform: translateY(0); /* Lift effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.contact-container h2 {
+    color: #333; /* Dark text color for heading */
+    margin-bottom: 20px;
+    font-size: 2rem; /* Larger font size for heading */
+    transition: color 0.3s ease;
+}
+
+.contact-container h2:hover {
+    color: #f4b400; /* Change color on hover */
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Space between form elements */
+}
+
+.contact-form label {
+    font-weight: 600; /* Slightly bolder text */
+    color: #444; /* Dark color for labels */
+    font-size: 1.1rem; /* Slightly larger font size */
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 12px;
+    border: 1px solid #ddd; /* Light border for inputs */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Larger font size for readability */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #f4b400; /* Highlight border color on focus */
+    box-shadow: 0 0 8px rgba(244, 180, 0, 0.5); /* Soft glow effect on focus */
+    outline: none; /* Remove default focus outline */
+}
+
+.contact-form button {
+    background-color: #f4b400; /* Button color */
+    color: #fff; /* White text */
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #e0a800; /* Darken button color on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.form-message {
+    margin-top: 20px;
+    color: #f4b400; /* Color for messages */
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+}
+
+
+</style>
+
+ <!-- Contact Section -->
+<section id="contact">
+    <div class="contact-container">
+        <h2>Send a Message</h2>
+        <form id="contactForm" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+        <p id="formMessage" class="form-message"></p>
+    </div>
+</section>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    fetch('/contact', {
+        method: 'POST',
+        body: new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('formMessage').textContent = data.message;
+    })
+    .catch(error => {
+        document.getElementById('formMessage').textContent = 'There was an error submitting the form.';
+        console.error('Error:', error);
+    });
+});
+
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Basket</title>
+    <style>
+        /* Style général pour la page de panier */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* En-tête de la page */
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.5em;
+            color: #007bff;
+        }
+
+        /* Conteneur principal du panier */
+        .basket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Élément du panier */
+        .basket-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .basket-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image du design dans le panier */
+        .basket-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        /* Prix du design */
+        .basket-item p {
+            font-size: 1.4em;
+            color: #333;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Bouton pour supprimer du panier */
+        .basket-item form {
+            margin-top: 10px;
+        }
+
+        .basket-item button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .basket-item button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Conteneur pour les boutons d'achat */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacement entre les boutons */
+            margin: 20px 0;
+        }
+
+        /* Bouton pour continuer les achats */
+        .continue-shopping {
+            display: block;
+            width: 200px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-shopping.confirm {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .continue-shopping.confirm:hover {
+            background-color: #218838;
+        }
+
+        .continue-shopping.default {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .continue-shopping.default:hover {
+            background-color: #0056b3;
+        }
+
+        /* Message pour panier vide */
+        .empty-message {
+            text-align: center;
+            font-size: 1.5em;
+            color: #777;
+            margin: 40px 0;
+        }
+
+        /* Total Price */
+        .total-price {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'layout.html' %}
+
+    {% block body %}
+    <h1>Your Basket</h1>
+    {% if basket_items %}
+        <div class="basket-grid">
+            {% for item in basket_items %}
+            <div class="basket-item">
+                <img src="{{ item.image_url }}" alt="Design Image">
+                <p>Price: ${{ item.price }}</p>
+                <form action="{{ url_for('remove_from_basket', design_id=item.design_id) }}" method="post">
+                    <button type="submit">Remove from Basket</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Afficher le total des achats -->
+        <div class="total-price">Total Price: ${{ total_price }}</div>
+
+        <!-- Conteneur pour les boutons d'achat -->
+        <div class="button-container">
+            <a href="https://wa.me/212694835747?{{ encoded_message }}"
+               class="continue-shopping confirm">Confirm Purchase via WhatsApp</a>
+            <a href="/" class="continue-shopping default">Continue Shopping</a>
+        </div>
+
+    {% else %}
+        <p class="empty-message">Your basket is empty. Start shopping to add items!</p>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

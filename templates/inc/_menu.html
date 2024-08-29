@@ -1,0 +1,309 @@
+
+<style>
+    /* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.header-button {
+    margin-left: 12px;
+    border: 2px solid #f4b400; /* Yellow border */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 30px; /* Adjust padding as needed */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+}
+
+.header-button:hover {
+    background-color: #f4b400; /* Change background on hover */
+    color: #111; /* Change text color on hover */
+    border-color: #f4b400; /* Slightly darker yellow on hover */
+}
+
+/* Header when scrolled */
+header.scrolled {
+    background-color: #000;
+    padding: 10px 20px;
+}
+
+/* Logo Styling */
+.logo img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+/* Animation au survol */
+.logo:hover {
+    transform: scale(1.1) rotate(15deg); /* Zoom avant de 10% et rotation de 15 degrés */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Ombre portée pour effet de profondeur */
+}
+/* Animation au chargement (optionnelle) */
+@keyframes logoAnimation {
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.logo img {
+    animation: logoAnimation 1s ease-out;
+}
+/* Navigation Menu */
+nav {
+    display: flex;
+    align-items: center;
+    position: relative; /* Ensure the nav ul is positioned relative to this container */
+}
+
+/* Default Styles for Menu Links */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Default to horizontal layout */
+}
+
+/* Navigation links */
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 16px;
+    border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for nav links */
+nav ul li a:hover {
+    color: #fff;
+    background-color: #f4b400;
+    transform: translateY(-2px);
+}
+
+/* Navigation Toggle */
+.nav-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    position: relative; /* Align relative to parent */
+    z-index: 1001; /* Ensure it’s above the menu */
+    opacity: 0;
+}
+
+.nav-x {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    position: relative; /* Align relative to parent */
+    z-index: 1001; /* Ensure it’s above the menu */
+}
+
+
+
+.nav-toggle .bar {
+    height: 4px;
+    width: 30px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+
+.sidebar {
+    opacity: 0;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    position: sticky; /* Align relative to parent */
+    z-index: 1001; /* Ensure it’s above the menu */
+}
+.nav-links1 {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: relative; /* Align relative to parent */
+    z-index: 1001; /* Ensure it’s above the menu */
+   }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-toggle {
+        opacity: 1;
+        display: flex; /* Show toggle button on small screens */
+        position: absolute; /* Position it absolutely */
+        right: 20px; /* Align to the right */
+        top: 50%; /* Center vertically */
+        transform: translateY(-50%); /* Center vertically */
+        z-index: 1001; /* Ensure it’s above the menu */
+    }
+
+
+
+    .nav-x {
+        font-size: 30px;
+        color: #fff;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        display: none; /* Show toggle button on small screens */
+        position: absolute; /* Position it absolutely */
+        right: 20px; /* Align to the right */
+        top: 50%; /* Center vertically */
+        transform: translateY(-50%); /* Center vertically */
+        z-index: 1001; /* Ensure it’s above the menu */
+    }
+
+   .nav-links {
+    flex-direction: column;
+    width: 100%;
+    background-color: #111;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    right: 0;
+    z-index: 999;
+    padding: 10px 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out; /* Smooth dropdown effect */
+    overflow: hidden; /* Hide overflowing content */
+    max-height: 0; /* Start with zero height */
+    opacity: 0; /* Start with zero opacity */
+   }
+
+   .sidebar {
+    opacity: 1;
+    background-color: #111;
+    display: none;
+    align-items: center;
+    position: sticky;
+    width: 99%;
+    height: 100%;
+   }
+
+   .nav-links1 {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+    display: flex;
+   }
+
+   .nav-links1 li{
+    margin-bottom: 30px;
+    width: 100%;
+   }
+
+   .nav-links1 li a {
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    padding: 16px;
+    border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+   }
+}
+
+
+</style>
+
+<header>
+    <div id="logo" class="logo">
+        <a href="/"><img src="/Logo.png" alt="MB Design Studio Logo"></a>
+    </div>
+
+    <button onclick="showSidebar()" class="nav-toggle" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <button onclick="hideSidebar()" class="nav-x">X</button>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/design">Design</a></li>
+            <li><a href="/basket">Basket</a></li>
+            <li><a href="/contact">Contact</a></li>
+            {% if session.get('logged_in') %}
+                <!-- User is logged in -->
+                <li><a href="/profile" class="header-button">Profile</a></li>
+                <li><a href="/logout" class="header-button">Logout</a></li>
+            {% else %}
+                <!-- User is not logged in -->
+                <li><a href="/login" class="header-button">Login</a></li>
+                <li><a href="/signup" class="header-button">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<header class="sidebar">
+    <nav>
+        <ul class="nav-links1">
+            <li><a href="/">Home</a></li>
+            <li><a href="/design">Design</a></li>
+            <li><a href="/basket">Basket</a></li>
+            <li><a href="/contact">Contact</a></li>
+            {% if session.get('logged_in') %}
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            {% else %}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('nav ul');
+
+    navToggle.addEventListener('click', function() {
+        // Toggle the "showing" class on the navigation links
+        navLinks.classList.toggle('showing');
+        // Toggle the "active" class on the nav-toggle button
+        navToggle.classList.toggle('active');
+    });
+});
+
+function showSidebar(){
+    const sidebar = document.querySelector('.sidebar');
+    const nav_x = document.querySelector('.nav-x')
+    const nav_toggle = document.querySelector('.nav-toggle')
+    sidebar.style.display = 'flex';
+    nav_x.style.display = 'flex';
+    nav_toggle.style.display = 'none';
+}
+
+function hideSidebar(){
+    const sidebar = document.querySelector('.sidebar');
+    const nav_x = document.querySelector('.nav-x')
+    const nav_toggle = document.querySelector('.nav-toggle')
+    sidebar.style.display = 'none';
+    nav_x.style.display = 'none';
+    nav_toggle.style.display = 'flex';
+}
+</script>

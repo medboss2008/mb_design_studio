@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        /* Profile Page Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5f7f9, #d0e1f9);
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .profile-header {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .profile-details {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        .button-edit {
+            background-color: #2196F3;
+        }
+
+        .button-edit:hover {
+            background-color: #1976D2;
+        }
+
+        .button-logout {
+            background-color: #f44336;
+        }
+
+        .button-logout:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'layout.html' %}
+
+    {% block body %}
+    <main class="profile-wrapper">
+        <div class="profile-card">
+            <h1 class="profile-header">Profile</h1>
+            <div class="profile-details">
+                <p><strong>Full Name:</strong> {{ user.full_name }}</p>
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+            </div>
+            <a href="{{ url_for('update_profile') }}" class="button button-edit">Edit Profile</a>
+            <a href="{{ url_for('logout') }}" class="button button-logout">Logout</a>
+        </div>
+    </main>
+    {% endblock %}
+</body>
+</html>

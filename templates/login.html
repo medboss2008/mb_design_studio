@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<style>
+    /* Login Container Styles */
+    .login-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 40px auto;
+        margin-top: 10%;
+        margin-bottom: 30%;
+        opacity: 0;
+        transform: translateY(20px) scale(0.95) rotate(-3deg);
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95) rotate(-3deg);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0);
+        }
+    }
+
+    .login-container h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        text-align: center;
+        color: #444;
+    }
+
+    .login-container label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #444;
+    }
+
+    .login-container input {
+        width: calc(100% - 22px);
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .login-container input:focus {
+        border-color: #e68900;
+        outline: none;
+        transform: scale(1.02);
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 12px;
+        background-color: #e68900;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        position: relative;
+    }
+
+    .login-container button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: width 0.3s ease, height 0.3s ease;
+        transform: translate(-50%, -50%);
+    }
+
+    .login-container button:hover {
+        background-color: #d57c00;
+    }
+
+    .login-container .signup-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-container .signup-link a {
+        color: #e68900;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .login-container .signup-link a:hover {
+        color: #d57c00;
+        text-decoration: underline;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .login-container {
+            padding: 20px;
+            margin: 10px;
+            margin-top: 20%;
+            margin-bottom: 70%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h1 {
+            font-size: 24px;
+        }
+
+        .login-container input {
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .login-container button {
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .login-container .signup-link {
+            margin-top: 10px;
+        }
+    }
+</style>
+<div class="login-container">
+    <h1>Login</h1>
+    {% if error %}
+        <p style="color: red; text-align: center;">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('login') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <div class="signup-link">
+        <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+    </div>
+</div>
+{% endblock %}

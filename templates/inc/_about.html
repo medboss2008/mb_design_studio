@@ -1,0 +1,149 @@
+
+<style>
+    /* About Section Styling */
+#about {
+    padding: 60px 30px;
+    background: linear-gradient(to bottom, #f4f4f4, #fff);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animate content on scroll */
+.about-content {
+    display: inline-block;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Heading Style */
+.about-content h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.about-content h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #f4b400;
+    margin: 10px auto 0;
+    transition: width 0.4s ease;
+}
+
+.about-content h2:hover::after {
+    width: 100px;
+}
+
+/* Paragraph Style */
+.about-content p {
+    font-size: 1.1em;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Animation Trigger */
+#about.animate .about-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Optional: Responsive Design */
+@media (max-width: 768px) {
+    #about {
+        padding: 40px 20px;
+    }
+
+    .about-content h2 {
+        font-size: 2em;
+    }
+
+    .about-content p {
+        font-size: 1em;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+</style>
+
+ <!-- About Section -->
+ <section id="about">
+    <div class="about-content">
+        <h2>About Us</h2>
+        <p>At MB Design Studio, we offer a collection of unique and captivating designs that push the boundaries of creativity. Whether you're looking for modern art, interactive web designs, or graphic concepts, we have something for everyone.</p>
+    </div>
+</section>
+
+
+<script>
+    
+document.addEventListener('DOMContentLoaded', function() {
+    const aboutSection = document.getElementById('about');
+
+    function handleScroll() {
+        const sectionTop = aboutSection.getBoundingClientRect().top;
+        const viewportHeight = window.innerHeight;
+
+        if (sectionTop < viewportHeight * 0.8) {
+            aboutSection.classList.add('animate');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on page load
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopButton = document.getElementById('scrollToTop');
+
+    // Show or hide the button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) { // Adjust scroll position for visibility
+            scrollToTopButton.classList.add('show');
+        } else {
+            scrollToTopButton.classList.remove('show');
+        }
+    });
+
+    // Smooth scroll to top when button is clicked
+    scrollToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>

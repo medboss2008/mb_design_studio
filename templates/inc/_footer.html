@@ -1,0 +1,82 @@
+
+<style>
+    /* Footer Styles */
+footer {
+    background-color: #111; /* Dark background to match header */
+    color: #fff; /* White text for contrast */
+    padding: 20px 0; /* Padding for spacing */
+    margin-top: 10%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+}
+
+/* Footer Content */
+.footer-content {
+    max-width: 1200px; /* Maximum width for larger screens */
+    margin: 0 auto; /* Center content horizontally */
+    padding: 0 20px; /* Add some padding on the sides */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px 10px; /* Adjust padding for smaller screens */
+    }
+
+    .footer-content {
+        padding: 0 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Optional: Hover Effect */
+footer p {
+    transition: color 0.3s ease;
+}
+
+footer p:hover {
+    color: #f4b400; /* Change color on hover for a subtle effect */
+}
+
+
+/* Scroll to Top Button Styles */
+#scrollToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position at the bottom right */
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    background-color: #f4b400; /* Button color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 50%; /* Circular button */
+    width: 50px; /* Button size */
+    height: 50px; /* Button size */
+    font-size: 24px; /* Font size for the arrow */
+    text-align: center; /* Center text */
+    line-height: 50px; /* Center text vertically */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+#scrollToTop:hover {
+    background-color: #e0a800; /* Darker shade on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+}
+
+/* Show the button when scrolled down */
+#scrollToTop.show {
+    display: block; /* Show button */
+}
+</style>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 MB Design Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+<button id="scrollToTop" title="Back to top">↑</button>
+
+
